@@ -1,0 +1,98 @@
+; Recursively search directories for a regex pattern. Faster than grep.
+; More information: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+
+% rg
+
+# Search recursively for a pattern
+rg <pattern>
+
+% rg
+
+# Search in a specific file
+rg <pattern> <file>
+
+% rg
+
+# Case insensitive
+rg -i <pattern>
+
+% rg
+
+# Whole word only
+rg -w <pattern>
+
+% rg
+
+# List matching files only
+rg -l <pattern>
+
+% rg
+
+# Invert match
+rg -v <pattern>
+
+% rg
+
+# Show N lines of context around each match
+rg -C <lines> <pattern>
+
+% rg
+
+# Show N lines before each match
+rg -B <lines> <pattern>
+
+% rg
+
+# Show N lines after each match
+rg -A <lines> <pattern>
+
+% rg
+
+# Filter by glob
+rg <pattern> -g '<glob>'
+
+% rg
+
+# Exclude by glob
+rg <pattern> -g '!<glob>'
+
+% rg
+
+# Search by file type
+rg <pattern> --type <type>
+
+$ type: printf '%s\n' 'rust'
+
+% rg
+
+# List available file types
+rg --type-list
+
+% rg
+
+# Search for a literal string (no regex)
+rg -F <string>
+
+% rg
+
+# Count matches per file
+rg -c <pattern>
+
+% rg
+
+# Only search files matching a glob
+rg <glob> <pattern> <paths>
+
+$ glob: printf '%s\n' '-g' '--glob'
+
+% rg
+
+# Replace matches (dry-run, preview only)
+rg <pattern> --replace <replacement>
+
+% rg
+
+# Search hidden files and ignore .gitignore
+rg <hidden> --no-ignore <pattern>
+
+$ hidden: printf '%s\n' '-.' '--hidden'

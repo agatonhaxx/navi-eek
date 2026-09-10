@@ -1,0 +1,42 @@
+; Kubernetes package manager.
+; More information: https://helm.sh/docs/
+
+% helm
+
+# Add a repository
+helm repo add <name> <url>
+
+% helm
+
+# Update repositories
+helm repo update
+
+% helm
+
+# Install a chart
+helm install <release> <chart>
+
+% helm
+
+# Install with custom values
+helm install <release> <chart> -f <values_file>
+
+% helm
+
+# Upgrade a release
+helm upgrade <release> <chart>
+
+% helm
+
+# List releases
+helm list
+
+% helm
+
+# Uninstall a release
+helm uninstall <release>
+
+% helm
+
+# Rollback a release
+helm rollback <release> <revision>

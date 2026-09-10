@@ -1,0 +1,34 @@
+; Socket statistics (replacement for netstat).
+; More information: https://man7.org/linux/man-pages/man8/ss.8.html
+
+% ss
+
+# List all listening TCP sockets
+ss -tlnp
+
+% ss
+
+# List all listening UDP sockets
+ss -ulnp
+
+% ss
+
+# List all sockets (TCP + UDP + UNIX)
+ss -a
+
+% ss
+
+# Show process names
+ss -p
+
+% ss
+
+# Filter by state
+ss state <state>
+
+$ state: printf '%s\n' 'established'
+
+% ss
+
+# Show timer info
+ss -o

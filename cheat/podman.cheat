@@ -1,0 +1,52 @@
+; Daemonless container engine.
+; More information: https://docs.podman.io/en/latest/Commands.html
+
+% podman
+
+# List running containers
+podman ps
+
+% podman
+
+# Run a container
+podman run -d --name <name> -p <host_port>:<container_port> <image>
+
+% podman
+
+# Run interactively with auto-remove
+podman run -it --rm <image> <shell>
+
+% podman
+
+# Pull an image
+podman pull <image>
+
+% podman
+
+# Build an image
+podman build -t <name>:<tag> .
+
+% podman
+
+# List images
+podman images
+
+% podman
+
+# Stop a container
+podman stop <name>
+
+% podman
+
+# Remove a container
+podman rm <name>
+
+% podman
+
+# View container logs
+podman logs <name>
+
+% podman
+
+# Generate Kubernetes YAML from containers
+podman generate kube <name>

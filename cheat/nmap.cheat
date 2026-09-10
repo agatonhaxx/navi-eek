@@ -1,0 +1,42 @@
+; Network exploration and port scanner.
+; More information: https://nmap.org/book/man.html
+
+% nmap
+
+# Scan a single host
+nmap <host>
+
+% nmap
+
+# Scan specific ports
+nmap -p <ports> <host>
+
+% nmap
+
+# Scan a port range
+nmap -p <port_range> <host>
+
+% nmap
+
+# Detect OS and services
+nmap -A <host>
+
+% nmap
+
+# Fast scan (top 100 ports)
+nmap -F <host>
+
+% nmap
+
+# Scan a subnet
+nmap <subnet>
+
+% nmap
+
+# Aggressive timing (faster, noisier)
+nmap -T4 <host>
+
+% nmap
+
+# Service version detection
+nmap -sV <host>

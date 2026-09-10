@@ -1,0 +1,66 @@
+; Terminal multiplexer — run multiple sessions, detach and reattach.
+; More information: https://github.com/tmux/tmux/wiki
+
+% tmux
+
+# Create a new named session
+tmux new -s <name>
+
+% tmux
+
+# List sessions
+tmux ls
+
+% tmux
+
+# Attach to a session
+tmux attach -t <name>
+
+% tmux
+
+# Kill a session
+tmux kill-session -t <name>
+
+% tmux
+
+# Split vertically
+tmux split-window -v
+
+% tmux
+
+# Split horizontally
+tmux split-window -h
+
+% tmux
+
+# Create a pre-arranged layout from a script
+tmux new-session -d -s <name> \; split-window -h \; attach -t <name>
+
+% tmux
+
+# Send keys to a session from a script
+tmux send-keys -t <session> '<command>' Enter
+
+; Key Bindings
+; Prefix: `Ctrl-b` (default).
+; Ctrl-b d        detach
+; Ctrl-b $        rename session
+; Ctrl-b c        new window
+; Ctrl-b ,        rename window
+; Ctrl-b n/p      next/previous window
+; Ctrl-b w        interactive window list
+; Ctrl-b &        kill window
+; Ctrl-b %        split vertically
+; Ctrl-b "        split horizontally
+; Ctrl-b o        cycle pane
+; Ctrl-b z        zoom/unzoom pane
+; Ctrl-b x        kill pane
+; Ctrl-b [        enter copy mode
+; Ctrl-b ]        paste
+; Ctrl-b {/}      swap pane left/right
+; Config (~/.tmux.conf)
+; set -g prefix C-a
+; unbind C-b
+; set -g base-index 1
+; set -g mouse on
+; setw -g mode-keys vi

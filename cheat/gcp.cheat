@@ -1,0 +1,202 @@
+; Google Cloud command-line interface.
+; More information: https://cloud.google.com/sdk
+
+% gcloud
+
+# List projects
+gcloud projects list
+
+% gcloud
+
+# Describe a project
+gcloud projects describe <project-id>
+
+% gcloud
+
+# Set the active project
+gcloud config set project <project-id>
+
+% gcloud
+
+# Create a service account
+gcloud iam service-accounts create <name> --display-name "<display-name>"
+
+% gcloud
+
+# Grant an IAM role to a service account
+gcloud projects add-iam-policy-binding <project-id> --member "serviceAccount:<name>@<project-id>.iam.gserviceaccount.com" --role "<role>"
+
+% gcloud
+
+# Authenticate as a service account
+gcloud auth activate-service-account --key-file=<key-file>
+
+% gcloud
+
+# Generate a service account key (avoid — use workload identity where possible)
+gcloud iam service-accounts keys create <key-file> --iam-account <name>@<project-id>.iam.gserviceaccount.com
+
+% gcloud
+
+# List regions
+gcloud compute regions list
+
+% gcloud
+
+# List zones in a region
+gcloud compute zones list --filter=region:<region>
+
+% gcloud
+
+# Create a VM instance
+gcloud compute instances create <name> --zone=<zone> --machine-type=<type> --image-family=<image-family> --image-project=<image-project> --boot-disk-size=<size>GB --boot-disk-type=<disk-type>
+
+% gcloud
+
+# List VM instances
+gcloud compute instances list
+
+% gcloud
+
+# SSH into a VM instance
+gcloud compute ssh <name> --zone=<zone>
+
+% gsutil
+
+# Create a bucket
+gsutil mb gs://<bucket>
+
+% gsutil
+
+# List objects in a bucket
+gsutil ls gs://<bucket>/
+
+% gsutil
+
+# Upload a file
+gsutil cp <file> gs://<bucket>/
+
+% gsutil
+
+# Download an object
+gsutil cp gs://<bucket>/<object> .
+
+% gsutil
+
+# Sync a directory to a bucket (delete removed files)
+gsutil rsync -d <dir> gs://<bucket>/<dir>/
+
+% gsutil
+
+# Generate a signed URL (temporary access)
+gsutil signurl -d 1h <key-file> gs://<bucket>/<object>
+
+% gcloud
+
+# Deploy a Cloud Run service
+gcloud run deploy <service> --image=<image> --region=<region> --allow-unauthenticated
+
+% gcloud
+
+# List Cloud Run services
+gcloud run services list
+
+% gcloud
+
+# Shift Cloud Run traffic to a revision
+gcloud run services update-traffic <service> --to-revisions=<revision>=100
+
+% gcloud
+
+# Create a GKE cluster
+gcloud container clusters create <name> --zone=<zone> --num-nodes=<n> --enable-autoscaling --min-nodes=<min> --max-nodes=<max>
+
+% gcloud
+
+# Get credentials for a GKE cluster
+gcloud container clusters get-credentials <name> --zone=<zone>
+
+% gcloud
+
+# Deploy a Cloud Function
+gcloud functions deploy <name> --runtime=<runtime> --trigger-http --region=<region> --entry-point=<handler>
+
+% gcloud
+
+# Create a DNS managed zone
+gcloud dns managed-zones create <zone> --dns-name=<domain>. --description="<description>"
+
+% gcloud
+
+# Start a DNS record transaction
+gcloud dns record-sets transaction start --zone=<zone>
+
+% gcloud
+
+# Add a record to a DNS transaction
+gcloud dns record-sets transaction add --zone=<zone> --name=<hostname>. --type=<record-type> --ttl=<ttl> "<value>"
+
+% gcloud
+
+# Execute a DNS record transaction
+gcloud dns record-sets transaction execute --zone=<zone>
+
+% gcloud
+
+# Create a Pub/Sub topic
+gcloud pubsub topics create <topic>
+
+% gcloud
+
+# Create a Pub/Sub subscription
+gcloud pubsub subscriptions create <subscription> --topic=<topic>
+
+% gcloud
+
+# Publish a message to a topic
+gcloud pubsub topics publish <topic> --message="<message>"
+
+% gcloud
+
+# Pull messages from a subscription (and acknowledge)
+gcloud pubsub subscriptions pull <subscription> --auto-ack
+
+% gcloud
+
+# Tag a VM with labels
+gcloud compute instances add-labels <name> --labels=<key>=<value>,<key2>=<value2>
+
+% gcloud
+
+# Create a resource-manager folder
+gcloud resource-manager folders create --display-name="<name>" --organization=<org-id>
+
+% gcloud
+
+# Create a project under a folder
+gcloud projects create <project-id> --folder=<folder-id>
+
+% gcloud
+
+# Create a KMS keyring
+gcloud kms keyrings create <keyring> --location=<region>
+
+% gcloud
+
+# Create a KMS key
+gcloud kms keys create <key> --keyring=<keyring> --location=<region> --purpose=encryption
+
+% gcloud
+
+# Encrypt a file with a KMS key
+gcloud kms encrypt --key=<key> --keyring=<keyring> --location=<region> --plaintext-file=<file> --ciphertext-file=<file>.enc
+
+% gcloud
+
+# Check quota for a region
+gcloud compute regions describe <region>
+
+% gcloud
+
+# List service quota usage
+gcloud beta services quota list --service=<service>.googleapis.com --consumer=projects/<project-id>

@@ -1,0 +1,37 @@
+; Build automation.
+; More information: https://www.gnu.org/software/make/manual/
+
+% make
+
+# Run the default target
+make
+
+% make
+
+# Run a specific target
+make <target>
+
+% make
+
+# Run in parallel (N jobs)
+make -j<jobs>
+
+% make
+
+# Dry-run (show commands without executing)
+make -n
+
+% make
+
+# Run with a custom Makefile
+make -f <makefile> <target>
+
+% make
+
+# Pass a variable
+make <var>=<value>
+
+% make
+
+# Continue after errors
+make -k

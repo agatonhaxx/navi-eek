@@ -1,0 +1,27 @@
+; Simple, modern file encryption.
+; More information: https://github.com/FiloSottile/age
+
+% age, common
+
+# Generate a key pair
+age-keygen -o <key_file>
+
+% age
+
+# Encrypt a file with a public key (repeat the `--recipient` flag to specify multiple public keys)
+age -r <public_key> -o <output> <file>
+
+% age
+
+# Decrypt a file with a private key
+age -d -i <key_file> -o <output> <file>
+
+% age
+
+# Encrypt with a passphrase
+age -p -o <output> <file>
+
+% age
+
+# Decrypt a passphrase-encrypted file
+age -d -o <output> <file>

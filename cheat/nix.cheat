@@ -1,0 +1,144 @@
+; Nix and NixOS — ephemeral dev shells, flakes, store management, system rebuilds.
+
+% nix
+
+# Enter the dev shell of the current flake
+nix develop
+
+% nix
+
+# Run a package without installing it
+nix run nixpkgs#<package> -- <args>
+
+% nix
+
+# Build the default package of the current flake
+nix build
+
+% nix
+
+# Update all inputs in flake.lock
+nix flake update
+
+% nix
+
+# Update a specific flake input
+nix flake lock --update-input <name>
+
+% nix
+
+# Garbage-collect unused store paths
+nix store gc
+
+% nix
+
+# Show the derivation of a package
+nix show-derivation nixpkgs#<package>
+
+% nix-shell
+
+# Enter a shell with specific packages available
+nix-shell -p <package1> <package2>
+
+% nix-shell
+
+# Run a one-off command with packages
+nix-shell -p <package1> <package2> --run "<command>"
+
+% nix-shell
+
+# Enter the legacy shell.nix shell
+nix-shell
+
+% devenv
+
+# Start the project devenv shell
+devenv shell
+
+% devenv
+
+# Start devenv with background services
+devenv up
+
+% nixos-rebuild
+
+# Rebuild and switch to the new system config
+sudo nixos-rebuild switch
+
+% nixos-rebuild
+
+# Build the new system config without switching
+sudo nixos-rebuild build
+
+% nixos-rebuild
+
+# Roll back to the previous generation
+sudo nixos-rebuild switch --rollback
+
+% nixos-rebuild
+
+# List system generations
+nixos-rebuild list-generations
+
+% nixos-rebuild
+
+# Rebuild and switch from a flake (host configuration)
+sudo nixos-rebuild switch --flake .#<host>
+
+% nix-env
+
+# Switch the system profile to a specific generation
+sudo nix-env --switch-generation <N>
+
+% nix-env
+
+# List generations of the system profile
+sudo nix-env --list-generations -p /nix/var/nix/profiles/system
+
+% nix-store
+
+# Show the runtime dependencies of a command
+nix-store --query --references $(which <command>)
+
+% nix-store
+
+# Show the dependency tree of a command
+nix-store --query --tree $(which <command>)
+
+% nix-store
+
+# Show what depends on a store path
+nix-store --query --referrers /nix/store/<path>
+
+% nix-collect-garbage
+
+# Delete old generations and unreachable store paths
+nix-collect-garbage -d
+
+% nix-locate
+
+# Find which package provides a file
+nix-locate <path>
+
+% nix, common
+
+# Enable the `nix` command and flake support
+mkdir -p ~/.config/nix; echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+
+# Search for a package in nixpkgs via its name or description
+nix search nixpkgs <search_term>
+
+# Start a shell with the specified packages from nixpkgs available
+nix shell <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
+
+# Install some packages from nixpkgs permanently
+nix profile install <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
+
+# Remove unused paths from Nix store to free up space
+nix store gc
+
+# Start an interactive environment for evaluating Nix expressions
+nix repl
+
+# Display help for a specific subcommand
+nix help <subcommand>

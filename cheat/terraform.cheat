@@ -1,0 +1,47 @@
+; Infrastructure as code.
+; More information: https://developer.hashicorp.com/terraform/cli
+
+% terraform
+
+# Initialize working directory
+terraform init
+
+% terraform
+
+# Show changes required
+terraform plan
+
+% terraform
+
+# Apply changes
+terraform apply
+
+% terraform
+
+# Apply without prompt
+terraform apply -auto-approve
+
+% terraform
+
+# Destroy infrastructure
+terraform destroy
+
+% terraform
+
+# Format configuration files
+terraform fmt -recursive
+
+% terraform
+
+# Validate configuration
+terraform validate
+
+% terraform
+
+# Show state
+terraform show
+
+% terraform
+
+# List resources in state
+terraform state list

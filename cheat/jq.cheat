@@ -1,0 +1,52 @@
+; JSON processor for command-line.
+; More information: https://jqlang.github.io/jq/manual/
+
+% jq
+
+# Pretty-print JSON
+jq '.' <file>
+
+% jq
+
+# Extract a field
+jq '.<field>' <file>
+
+% jq
+
+# Extract nested field
+jq '.<parent>.<child>' <file>
+
+% jq
+
+# Select array elements matching a condition
+jq '.[] | select(.<field> == "<value>")' <file>
+
+% jq
+
+# Map over array and extract fields
+jq '.[] | {name: .name, count: .count}' <file>
+
+% jq
+
+# Filter by regex
+jq '.[] | select(.name | test("<pattern>"))' <file>
+
+% jq
+
+# Count array elements
+jq '. | length' <file>
+
+% jq
+
+# Sort by field
+jq 'sort_by(.<field>)' <file>
+
+% jq
+
+# Extract raw string (no quotes)
+jq -r '.name' <file>
+
+% jq
+
+# Pipe from curl
+curl -s <url> | jq '.'

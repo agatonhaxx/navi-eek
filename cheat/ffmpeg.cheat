@@ -1,0 +1,42 @@
+; Video and audio converter.
+; More information: https://ffmpeg.org/ffmpeg.html
+
+% ffmpeg
+
+# Convert video format
+ffmpeg -i <input> <output>
+
+% ffmpeg
+
+# Extract audio from video
+ffmpeg -i <input> -vn <output>
+
+% ffmpeg
+
+# Resize video
+ffmpeg -i <input> -vf scale=<width>:<height> <output>
+
+% ffmpeg
+
+# Trim video (start time and duration)
+ffmpeg -ss <start_time> -i <input> -t <duration> -c copy <output>
+
+% ffmpeg
+
+# Compress video (CRF lower = better, 18-28)
+ffmpeg -i <input> -c:v libx264 -crf <crf> <output>
+
+% ffmpeg
+
+# Convert images to video
+ffmpeg -framerate <fps> -pattern_type glob -i '<glob>' <output>
+
+% ffmpeg
+
+# Extract frames from video
+ffmpeg -i <input> -r <fps> frame_%04d.png
+
+% ffmpeg
+
+# Merge audio and video tracks
+ffmpeg -i <video> -i <audio> -c copy <output>

@@ -1,0 +1,37 @@
+; PostgreSQL client and backup command-line tools.
+; More information: https://www.postgresql.org/docs/current/reference-client.html
+
+% psql
+
+# Connect to a database
+psql -h <host> -U <user> -d <database>
+
+% psql
+
+# Restore an SQL dump
+psql <database> < dump.sql
+
+% pg_dump
+
+# Logical dump of one database as SQL text
+pg_dump <database> > dump.sql
+
+% pg_dump
+
+# Custom-format dump (selective restore with pg_restore)
+pg_dump -Fc <database> > dump.custom
+
+% pg_dumpall
+
+# Dump the entire cluster (all databases and roles)
+pg_dumpall > all.sql
+
+% pg_restore
+
+# Restore a custom-format dump into a database
+pg_restore -d <database> dump.custom
+
+% pg_basebackup
+
+# Physical base backup (WAL + data files)
+pg_basebackup -D <backup-dir>

@@ -1,0 +1,174 @@
+; Distributed version control system.
+; More information: https://git-scm.com/docs/git
+
+% git
+
+# Create a new repository
+git init
+
+% git
+
+# Clone a repository
+git clone <url>
+
+% git
+
+# Stage a file
+git add <file>
+
+% git
+
+# Stage hunks interactively
+git add -p
+
+% git
+
+# Commit staged changes
+git commit -m "<message>"
+
+% git
+
+# Amend the last commit (edit message or add files)
+git commit --amend --no-edit
+
+% git
+
+# Show working tree status
+git status
+
+% git
+
+# Show compact history graph
+git log --oneline --graph --all
+
+% git
+
+# Show unstaged changes
+git diff
+
+% git
+
+# Show staged changes
+git diff --staged
+
+% git
+
+# List branches
+git branch
+
+% git
+
+# Create and switch to a new branch
+git switch -c <name>
+
+% git
+
+# Switch to a branch
+git switch <name>
+
+% git
+
+# Merge a branch into the current one
+git merge <branch>
+
+% git
+
+# Rebase current branch onto another
+git rebase <branch>
+
+% git
+
+# Stash changes
+git stash
+
+% git
+
+# Pop stashed changes
+git stash pop
+
+% git
+
+# Fetch from remote
+git fetch
+
+% git
+
+# Pull from remote
+git pull
+
+% git
+
+# Push to remote
+git push
+
+% git
+
+# Add a remote
+git remote add <name> <url>
+
+% git
+
+# Create a tag
+git tag <name>
+
+% git
+
+# Cherry-pick a commit
+git cherry-pick <commit>
+
+% git
+
+# Reset to a commit (keep changes unstaged)
+git reset <commit>
+
+% git
+
+# Reset everything to the latest commit
+git reset --hard; git clean <force>
+
+$ force: printf '%s\n' '-f' '--force'
+
+% git
+
+# Show what changed in a file per commit
+git blame <file>
+
+% git
+
+# Find the commit that introduced a bug
+git bisect start; git bisect bad; git bisect good <commit>
+
+% git, worktree
+
+# Create a new worktree with a branch of the same name
+git worktree add <path_to_directory> -b <branch_name>
+
+% git, worktree
+
+# Create a worktree for an existing branch
+git worktree add <path_to_directory> <branch_name>
+
+% git, worktree
+
+# List all worktrees
+git worktree list
+
+% git, worktree
+
+# Remove a worktree
+git worktree remove <path_to_worktree>
+
+% git, worktree
+
+# Prune stale worktree metadata
+git worktree prune
+
+% git, worktree
+
+# Move a worktree
+git worktree move <path_to_worktree> <new_path>
+
+; Limitations
+; - You can't check out the same branch in two worktrees.
+; - Worktrees share the same `.git` object store.
+; - Submodules are independent per worktree.

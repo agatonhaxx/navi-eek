@@ -1,0 +1,37 @@
+; TCP/UDP swiss army knife.
+; More information: https://man.openbsd.org/nc
+
+% nc
+
+# Listen on a port
+nc -l <port>
+
+% nc
+
+# Connect to a port
+nc <host> <port>
+
+% nc
+
+# Send a file
+nc <host> <port> < <file>
+
+% nc
+
+# Receive a file
+nc -l <port> > <file>
+
+% nc
+
+# Scan a port range
+nc -zv <host> <start_port>-<end_port>
+
+% nc
+
+# Connect via UDP
+nc -u <host> <port>
+
+% nc
+
+# Keep listening after client disconnects
+nc -lk <port>

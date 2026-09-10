@@ -1,0 +1,45 @@
+; Terminal multiplexer written in Rust.
+; More information: https://zellij.dev/documentation/
+
+% zellij
+
+# Start a new session
+zellij
+
+% zellij
+
+# List sessions
+zellij list-sessions
+
+% zellij
+
+# Attach to a session
+zellij attach <session>
+
+% zellij
+
+# Start a named session
+zellij -s <name>
+
+% zellij
+
+# Start with a specific layout
+zellij --layout <layout_file>
+
+% zellij
+
+# Kill a session
+zellij kill-session <session>
+
+% zellij
+
+# Delete all sessions
+zellij delete-all-sessions
+
+; Keybindings (default locked mode, Ctrl-g to unlock, then use Ctrl+key combos):
+; Ctrl-g        lock/unlock
+; Ctrl-p n      new pane
+; Ctrl-p x      close pane
+; Ctrl-p ↑/↓/←/→  move focus
+; Ctrl-t n      new tab
+; Ctrl-t x      close tab

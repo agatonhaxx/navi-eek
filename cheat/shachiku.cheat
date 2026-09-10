@@ -1,0 +1,42 @@
+; AI-powered job application agent.
+; More information: (project-local tool)
+
+% shachiku
+
+# Scrape job listings
+shachiku scrape
+
+% shachiku
+
+# Score and rank jobs with LLM
+shachiku score
+
+% shachiku
+
+# Review a job posting
+shachiku review <job_id>
+
+% shachiku
+
+# Apply to a job (auto form fill)
+shachiku apply <job_id>
+
+% shachiku
+
+# Generate cover letter
+shachiku cover-letter <job_id>
+
+% shachiku
+
+# Send digest email
+shachiku digest
+
+% shachiku
+
+# Resume a failed application
+shachiku resume <app_id>
+
+% shachiku
+
+# Brute-force login (password testing)
+shachiku brute <broker_url>

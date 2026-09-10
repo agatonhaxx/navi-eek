@@ -1,0 +1,62 @@
+; Transfer data from or to a server.
+; More information: https://curl.se/docs/manpage.html
+
+% curl
+
+# GET request
+curl <url>
+
+% curl
+
+# GET with custom headers
+curl -H "<header>" <url>
+
+$ header: printf '%s\n' 'Content-Type: application/json'
+
+% curl
+
+# POST JSON data
+curl -X POST -H "Content-Type: application/json" -d '<json>' <url>
+
+$ json: printf '%s\n' '{"key":"value"}'
+
+% curl
+
+# POST form data
+curl -X POST -d "<field1>" -d "<field2>" <url>
+
+$ field1: printf '%s\n' 'key1=value1'
+
+$ field2: printf '%s\n' 'key2=value2'
+
+% curl
+
+# Follow redirects
+curl -L <url>
+
+% curl
+
+# Save output to file
+curl -o <file> <url>
+
+% curl
+
+# Include response headers
+curl -i <url>
+
+% curl
+
+# Send via specific HTTP method
+curl -X <method> <url>
+
+$ method: printf '%s\n' 'GET' 'POST' 'PUT' 'DELETE' 'PATCH'
+
+% curl
+
+# Silent mode (no progress bar)
+curl -s <url>
+
+% curl
+
+# Verbose output for debugging
+curl -v <url>

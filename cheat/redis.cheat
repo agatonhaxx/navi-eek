@@ -1,0 +1,127 @@
+; Redis command-line interface.
+; More information: https://redis.io/docs/latest/commands/
+
+% redis-cli
+
+# Set a key with a TTL in seconds
+redis-cli SET <key> <value> EX <seconds>
+
+% redis-cli
+
+# Set only if the key does not exist (lock acquisition)
+redis-cli SET <key> <value> NX
+
+% redis-cli
+
+# Set only if the key already exists
+redis-cli SET <key> <value> XX
+
+% redis-cli
+
+# Get a key
+redis-cli GET <key>
+
+% redis-cli
+
+# Delete a key
+redis-cli DEL <key>
+
+% redis-cli
+
+# Check whether a key exists
+redis-cli EXISTS <key>
+
+% redis-cli
+
+# Set a TTL on a key
+redis-cli EXPIRE <key> <seconds>
+
+% redis-cli
+
+# Check the remaining TTL
+redis-cli TTL <key>
+
+% redis-cli
+
+# Get the data type of a key
+redis-cli TYPE <key>
+
+% redis-cli
+
+# Find keys by pattern (don't use in production — O(n))
+redis-cli KEYS <pattern>
+
+% redis-cli
+
+# Iterate keys safely
+redis-cli SCAN 0 MATCH <pattern> COUNT 100
+
+% redis-cli
+
+# Batch get
+redis-cli MGET <key1> <key2> <key3>
+
+% redis-cli
+
+# Batch set
+redis-cli MSET <key1> <val1> <key2> <val2>
+
+% redis-cli
+
+# Show server info for a section (replication, stats, memory)
+redis-cli INFO <section>
+
+% redis-cli
+
+# Get the current primary address from Sentinel (failover)
+redis-cli -p 26379 SENTINEL get-master-addr-by-name <master-name>
+
+% redis-cli
+
+# Check cluster health
+redis-cli --cluster check <host>:<port>
+
+% redis-cli
+
+# Show cluster information
+redis-cli --cluster info <host>:<port>
+
+% redis-cli
+
+# Show cluster nodes
+redis-cli CLUSTER NODES
+
+% redis-cli
+
+# Show slot-to-node mapping
+redis-cli CLUSTER SLOTS
+
+% redis-cli
+
+# Measure latency
+redis-cli --latency
+
+% redis-cli
+
+# Measure latency over time
+redis-cli --latency-history
+
+% redis-cli
+
+# Live stats (ops/sec, memory)
+redis-cli --stat
+
+% redis-cli
+
+# Find large keys
+redis-cli --bigkeys
+
+% redis-cli
+
+# Find keys using the most memory
+redis-cli --memkeys
+
+% redis-benchmark
+
+# Benchmark selected commands (100k requests, quiet output)
+redis-benchmark -t set,get -n 100000 -q

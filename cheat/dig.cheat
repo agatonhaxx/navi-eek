@@ -1,0 +1,39 @@
+; DNS lookup utility.
+; More information: https://bind9.readthedocs.io/en/latest/manpages/dig/
+
+% dig
+
+# Look up A record
+dig <domain>
+
+% dig
+
+# Look up specific record type
+dig <domain> <type>
+
+$ type: printf '%s\n' 'MX'
+
+% dig
+
+# Query a specific DNS server
+dig @<dns_server> <domain>
+
+% dig
+
+# Short answer only
+dig +short <domain>
+
+% dig
+
+# Reverse DNS lookup
+dig -x <ip>
+
+% dig
+
+# Trace the delegation path
+dig +trace <domain>
+
+% dig
+
+# Look up with DNSSEC validation
+dig +dnssec <domain>

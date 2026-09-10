@@ -1,0 +1,59 @@
+; Taskwarrior — command-line task manager.
+; More information: https://taskwarrior.org/docs/
+
+% task
+
+# Add a task
+task add "<description>"
+
+% task
+
+# Add with priority and project
+task add "<description>" priority:<priority> project:<name>
+
+$ priority: printf '%s\n' 'H'
+
+% task
+
+# List tasks
+task list
+
+% task
+
+# List tasks for a project
+task project:<name> list
+
+% task
+
+# Mark a task as done
+task <id> done
+
+% task
+
+# Modify a task
+task <id> modify "<description>"
+
+% task
+
+# Start working on a task
+task <id> start
+
+% task
+
+# Stop working on a task
+task <id> stop
+
+% task
+
+# View task details
+task <id> info
+
+% task
+
+# Show active tasks
+task active
+
+% task
+
+# Show summary by project
+task summary

@@ -1,0 +1,114 @@
+; Manage Docker containers and images.
+; More information: https://docs.docker.com/reference/cli/docker/
+
+% docker
+
+# List running containers
+docker ps
+
+% docker
+
+# List all containers
+docker <cmd> <all>
+
+$ cmd: printf '%s\n' 'ps' 'container ls'
+
+$ all: printf '%s\n' '-a' '--all'
+
+% docker
+
+# Start a container from an image with a custom name
+docker <cmd> --name <name> <image>
+
+$ cmd: printf '%s\n' 'run' 'container run'
+
+% docker
+
+# Run an interactive container (auto-remove on exit)
+docker run -it --rm <image> <shell>
+
+% docker
+
+# Run detached with port mapping
+docker run -d --name <name> -p <host_port>:<container_port> <image>
+
+% docker
+
+# Start or stop a container
+docker container <action> <name>
+
+$ action: printf '%s\n' 'start' 'stop'
+
+% docker
+
+# Open a shell inside a running container
+docker <cmd> <interactive> <name> <shell>
+
+$ cmd: printf '%s\n' 'exec' 'container exec'
+
+$ interactive: printf '%s\n' '-it' '--interactive --tty'
+
+% docker
+
+# Pull an image
+docker <cmd> <image>
+
+$ cmd: printf '%s\n' 'pull' 'image pull'
+
+% docker
+
+# Build an image from a Dockerfile
+docker build -t <name>:<tag> .
+
+% docker
+
+# List images
+docker images
+
+% docker
+
+# Remove an image
+docker rmi <name>:<tag>
+
+% docker
+
+# Remove unused images
+docker image prune -a
+
+% docker
+
+# Remove stopped containers
+docker <cmd> <names>
+
+$ cmd: printf '%s\n' 'rm' 'container rm'
+
+% docker
+
+# Fetch and follow logs
+docker <cmd> <follow> <name>
+
+$ cmd: printf '%s\n' 'logs' 'container logs'
+
+$ follow: printf '%s\n' '-f' '--follow'
+
+% docker
+
+# Inspect image layers and sizes
+docker history <image> --no-trunc
+
+% docker
+
+# Show filesystem changes in a container
+docker diff <name>
+
+% docker
+
+# Scan an image for vulnerabilities
+docker scout quickview <image>
+
+; Layer caching — order your Dockerfile from least-frequently-changing to most. Put dependencies before application code.
+; Multi-stage builds — separate build-time dependencies from the runtime image. The final image has only the binary, not the toolchain.
+; Security
+; - Never run as `USER root` in production.
+; - Pin base images by digest: `FROM debian@sha256:abc...`
+; - Use `COPY` instead of `ADD` (ADD auto-extracts tarballs).

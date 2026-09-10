@@ -1,0 +1,52 @@
+; Stream editor and pattern scanner.
+; More information: https://www.gnu.org/software/sed/manual/
+
+% sed
+
+# Replace first occurrence in each line
+sed 's/<old>/<new>/' <file>
+
+% sed
+
+# Replace all occurrences
+sed 's/<old>/<new>/g' <file>
+
+% sed
+
+# In-place replace (edit file)
+sed -i 's/<old>/<new>/g' <file>
+
+% sed
+
+# Delete lines matching pattern
+sed '/<pattern>/d' <file>
+
+% sed
+
+# Print lines matching pattern
+sed -n '/<pattern>/p' <file>
+
+% sed
+
+# Print specific line range
+sed -n '<start>,<end>p' <file>
+
+% sed
+
+# Replace on lines matching condition
+sed '/<condition>/s/<old>/<new>/' <file>
+
+% awk
+
+# Print column from space-separated input
+awk '{print $<col>}' <file>
+
+% awk
+
+# Print column from custom delimiter
+awk -F'<delimiter>' '{print $<col>}' <file>
+
+% awk
+
+# Sum a column
+awk '{sum+=$1} END {print sum}' <file>

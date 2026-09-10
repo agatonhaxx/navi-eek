@@ -1,0 +1,47 @@
+; Secure shell client.
+; More information: https://man.openbsd.org/ssh
+
+% ssh
+
+# Connect to a host
+ssh <user>@<host>
+
+% ssh
+
+# Connect on a specific port
+ssh -p <port> <user>@<host>
+
+% ssh
+
+# Connect with a specific identity file
+ssh -i <path_to_key> <user>@<host>
+
+% ssh
+
+# Run a command on a remote host
+ssh <user>@<host> '<command>'
+
+% ssh
+
+# Forward a local port to a remote host
+ssh -L <local_port>:<remote_host>:<remote_port> <user>@<host>
+
+% ssh
+
+# Forward a remote port to local
+ssh -R <remote_port>:<localhost>:<local_port> <user>@<host>
+
+% ssh
+
+# Copy a file to a remote host
+scp <file> <user>@<host>:<path>
+
+% ssh
+
+# Copy a directory recursively
+scp -r <dir> <user>@<host>:<path>
+
+% ssh
+
+# Generate an SSH key pair
+ssh-keygen -t ed25519 -C "<comment>"

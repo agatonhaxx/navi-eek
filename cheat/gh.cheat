@@ -1,0 +1,52 @@
+; GitHub CLI.
+; More information: https://cli.github.com/manual/
+
+% gh
+
+# Authenticate with GitHub
+gh auth login
+
+% gh
+
+# Create a pull request
+gh pr create --title "<title>" --body "<description>"
+
+% gh
+
+# List pull requests
+gh pr list
+
+% gh
+
+# View a pull request
+gh pr view <number>
+
+% gh
+
+# Check out a pull request locally
+gh pr checkout <number>
+
+% gh
+
+# Create an issue
+gh issue create --title "<title>" --body "<description>"
+
+% gh
+
+# List issues
+gh issue list
+
+% gh
+
+# Clone a repository
+gh repo clone <owner>/<repo>
+
+% gh
+
+# View workflow runs
+gh run list
+
+% gh
+
+# Watch a workflow run
+gh run watch <run_id>

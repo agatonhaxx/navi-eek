@@ -1,0 +1,202 @@
+; systemd service, logging and boot analysis tools.
+; More information: https://www.freedesktop.org/software/systemd/man/latest/systemctl.html
+
+% systemctl
+
+# Service status + last log lines
+systemctl status <service>
+
+% systemctl
+
+# Start a service
+systemctl start <service>
+
+% systemctl
+
+# Stop a service
+systemctl stop <service>
+
+% systemctl
+
+# Restart a service
+systemctl restart <service>
+
+% systemctl
+
+# Reload config without restarting
+systemctl reload <service>
+
+% systemctl
+
+# Start at boot
+systemctl enable <service>
+
+% systemctl
+
+# Do not start at boot
+systemctl disable <service>
+
+% systemctl
+
+# Check whether a service is enabled at boot
+systemctl is-enabled <service>
+
+% systemctl
+
+# Check whether a service is active
+systemctl is-active <service>
+
+% systemctl
+
+# List all active services
+systemctl list-units --type=service
+
+% systemctl
+
+# List all services, including inactive
+systemctl list-units --type=service --all
+
+% systemctl
+
+# List all installed units + enable status
+systemctl list-unit-files
+
+% systemctl
+
+# List timers
+systemctl list-timers
+
+% systemctl
+
+# Show timer status
+systemctl status <name>.timer
+
+% systemctl
+
+# List sockets
+systemctl list-sockets
+
+% systemctl
+
+# Show socket status
+systemctl status <name>.socket
+
+% systemctl
+
+# Reload unit files after editing
+systemctl daemon-reload
+
+% systemctl
+
+# Create an override for a unit (--full edits the full unit)
+systemctl edit <service>
+
+% systemctl
+
+# Show the unit file + overrides
+systemctl cat <service>
+
+% systemctl
+
+# Start a user service (user units in ~/.config/systemd/user/)
+systemctl --user start <service>
+
+% systemctl
+
+# Enable a user service
+systemctl --user enable <service>
+
+% systemctl
+
+# Show the default target
+systemctl get-default
+
+% systemctl
+
+# Set the default target (multi-user.target = no GUI, graphical.target = GUI)
+systemctl set-default <target>.target
+
+% systemctl
+
+# Switch to a target immediately
+systemctl isolate <target>.target
+
+% systemctl
+
+# List targets (multi-user.target, graphical.target, rescue.target, emergency.target)
+systemctl list-units --type=target
+
+% journalctl
+
+# Logs for a service
+journalctl -u <service>
+
+% journalctl
+
+# Follow new log lines (tail -f equivalent)
+journalctl -u <service> -f
+
+% journalctl
+
+# Logs since a time
+journalctl -u <service> --since "10 min ago"
+
+% journalctl
+
+# Logs since the current boot
+journalctl -u <service> -b
+
+% journalctl
+
+# Logs from the previous boot
+journalctl -u <service> -b -1
+
+% journalctl
+
+# Errors only (also: emerg, alert, crit, warning, notice, info, debug)
+journalctl -p err
+
+% journalctl
+
+# Logs since today
+journalctl --since today
+
+% journalctl
+
+# Kernel messages only
+journalctl -k
+
+% journalctl
+
+# Show log disk usage
+journalctl --disk-usage
+
+% journalctl
+
+# Limit the journal size
+journalctl --vacuum-size=<size>
+
+% systemd-analyze
+
+# Show boot time
+systemd-analyze
+
+% systemd-analyze
+
+# Time per unit, sorted
+systemd-analyze blame
+
+% systemd-analyze
+
+# Show what's on the critical boot path
+systemd-analyze critical-chain
+
+% systemd-analyze
+
+# Write a visual boot timeline
+systemd-analyze plot > boot.svg
+
+% loginctl
+
+# Enable lingering (user services stay up when user isn't logged in)
+sudo loginctl enable-linger <user>
