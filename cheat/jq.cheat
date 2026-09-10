@@ -1,5 +1,6 @@
 ; JSON processor for command-line.
 ; More information: https://jqlang.github.io/jq/manual/
+; Merged with misc__json.
 
 % jq
 
@@ -50,3 +51,10 @@ jq -r '.name' <file>
 
 # Pipe from curl
 curl -s <url> | jq '.'
+
+% json
+
+# Convert JSON to YAML
+cat <json_file> | ruby -ryaml -rjson -e 'puts YAML.dump(JSON.load(ARGF))'
+
+$ json_file: find . -name '*.json'

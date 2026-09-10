@@ -1,5 +1,6 @@
 ; systemd service, logging and boot analysis tools.
 ; More information: https://www.freedesktop.org/software/systemd/man/latest/systemctl.html
+; Merged from syst.cheat + misc__systemctl.
 
 % systemctl
 
@@ -200,3 +201,18 @@ systemd-analyze plot > boot.svg
 
 # Enable lingering (user services stay up when user isn't logged in)
 sudo loginctl enable-linger <user>
+
+% systemctl
+
+# List running services
+systemctl list-units --type=service --state=running
+
+% systemctl
+
+# List enabled services
+systemctl list-unit-files --type=service --state=enabled
+
+% systemctl
+
+# List disabled services
+systemctl list-unit-files --type=service --state=disabled

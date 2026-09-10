@@ -1,3 +1,6 @@
+; Network diagnostics — ports, IPs, geo lookups, quick utilities.
+; Merged from network__network + navi__cheats__network community cheats.
+
 % network
 
 # Kill a process running on a given port
@@ -21,9 +24,6 @@ netstat -tn 2>/dev/null \
    | sort -nr \
    | head
 
-# Find external, public IP address
-dig +short myip.opendns.com @resolver1.opendns.com
-
 # Find primary, local IP address
 ifconfig \
   | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' \
@@ -31,23 +31,26 @@ ifconfig \
   | grep -v '127.0.0.1' \
   | tail -n1
 
+# Find external, public IP address
+dig +short myip.opendns.com @resolver1.opendns.com
+
 # Geolocation data given an IP
 curl -sL "ipinfo.io/<ip>" | jq
 
 # Geolocation data for own IP
 curl -sL "ipinfo.io/<self_global_ip>" | jq
 
-# Launch a container with network utils
-docker run -it --entrypoint /bin/sh nicolaka/netshoot
-
-# Map ports
-sudo nmap -sS -sV -0 "<target>"
-
 # Find process using a port
 lsof -n -i4TCP:<port> | grep LISTEN
 
 # List open ports
 lsof -Pn -i4
+
+# Map ports of a target
+sudo nmap -sS -sV -O "<target>"
+
+# Launch a container with network utils
+docker run -it --entrypoint /bin/sh nicolaka/netshoot
 
 # Start a Python3 server
 python3 -m http.server

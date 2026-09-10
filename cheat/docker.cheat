@@ -1,5 +1,6 @@
 ; Manage Docker containers and images.
 ; More information: https://docs.docker.com/reference/cli/docker/
+; Merged from docker.cheat + container__docker + navi__cheats__docker.
 
 % docker
 
@@ -41,6 +42,16 @@ $ action: printf '%s\n' 'start' 'stop'
 
 % docker
 
+# Stop a running container through SIGTERM
+docker stop <container_id>
+
+% docker
+
+# Stop a running container through SIGKILL
+docker kill <container_id>
+
+% docker
+
 # Open a shell inside a running container
 docker <cmd> <interactive> <name> <shell>
 
@@ -72,6 +83,26 @@ docker rmi <name>:<tag>
 
 % docker
 
+# Remove an image by id
+docker image rm <image_id>
+
+% docker
+
+# Clean none/dangling images
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+% docker
+
+# Force clean none/dangling images
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc) -f
+
+% docker
+
+# Remove all images from the local image store
+docker images -q | xargs -I% docker rmi "%" --force
+
+% docker
+
 # Remove unused images
 docker image prune -a
 
@@ -84,12 +115,47 @@ $ cmd: printf '%s\n' 'rm' 'container rm'
 
 % docker
 
+# Remove all containers
+docker ps -aq | xargs -I% docker rm "%"
+
+% docker
+
+# Stop all containers
+docker ps -aq | xargs -I% docker stop "%"
+
+% docker
+
+# Delete all running and stopped containers
+docker ps -aq | xargs -I% docker rm -f "%"
+
+% docker
+
+# Prevent all containers from autostarting on boot
+docker update --restart=no $(docker ps -a -q)
+
+% docker
+
 # Fetch and follow logs
 docker <cmd> <follow> <name>
 
 $ cmd: printf '%s\n' 'logs' 'container logs'
 
 $ follow: printf '%s\n' '-f' '--follow'
+
+% docker
+
+# Print the last 100 lines of a container's logs
+docker logs --tail 100 <container_id> | less
+
+% docker
+
+# List the networks
+docker network ls
+
+% docker
+
+# Create a new network
+docker network create <network_name>
 
 % docker
 
@@ -106,9 +172,42 @@ docker diff <name>
 # Scan an image for vulnerabilities
 docker scout quickview <image>
 
+% docker compose
+
+# Builds, (re)creates, starts, and attaches to containers for all services
+docker compose up
+
+% docker compose
+
+# Builds, (re)creates, starts, and detaches to containers for all services
+docker compose up -d
+
+% docker compose
+
+# Builds, (re)creates, starts, and attaches to containers for a service
+docker compose up -d <service_name>
+
+% docker compose
+
+# Print the last lines of a service's logs
+docker compose logs --tail 100 <service_name> | less
+
+% docker compose
+
+# Print the last lines of a service's logs and follow its logs
+docker compose logs -f --tail 100 <service_name>
+
+% docker compose
+
+# Stops containers and removes containers, networks created by up
+docker compose down
+
 ; Layer caching — order your Dockerfile from least-frequently-changing to most. Put dependencies before application code.
 ; Multi-stage builds — separate build-time dependencies from the runtime image. The final image has only the binary, not the toolchain.
 ; Security
 ; - Never run as `USER root` in production.
 ; - Pin base images by digest: `FROM debian@sha256:abc...`
 ; - Use `COPY` instead of `ADD` (ADD auto-extracts tarballs).
+
+$ image_id: docker images --- --headers 1 --column 3 --delimiter '\s\s+'
+$ container_id: docker ps --- --headers 1 --column 1 --delimiter '\s\s+'

@@ -1,7 +1,7 @@
-; This has been extracted from
-; https://github.com/tldr-pages/tldr/blob/master/pages/common/ansible.md
+; Ansible — ad-hoc commands, playbooks, vault, inventory, galaxy, documentation.
+; Merged from tldr pages: ansible, ansible-doc, ansible-galaxy, ansible-inventory, ansible-playbook, ansible-pull, ansible-vault.
 
-% ansible, common
+% ansible
 
 # List hosts belonging to a group
 ansible <group> --list-hosts
@@ -23,3 +23,117 @@ ansible <group> -i <inventory_file> -m command -a '<my_command>'
 
 # List the groups in an inventory
 ansible localhost -m debug -a '<var=groups.keys()>'
+
+% ansible-doc
+
+# List available action plugins (modules)
+ansible-doc --list
+
+# List available plugins of a specific type
+ansible-doc --type <become|cache|callback|cliconf|connection|...> --list
+
+# Show information about a specific action plugin (module)
+ansible-doc <plugin_name>
+
+# Show information about a plugin with a specific type
+ansible-doc --type <become|cache|callback|cliconf|connection|...> <plugin_name>
+
+# Show the playbook snippet for action plugins (modules)
+ansible-doc --snippet <plugin_name>
+
+# Show information about an action plugin (module) as JSON
+ansible-doc --json <plugin_name>
+
+% ansible-galaxy
+
+# List installed roles or collections
+ansible-galaxy <role|collection> list
+
+# Search for a role with various levels of verbosity (`-v` should be specified at the end)
+ansible-galaxy role search <keyword> -v<vvvvv>
+
+# Install or remove role(s)
+ansible-galaxy role <install|remove> <role_name1 role_name2 ...>
+
+# Create a new role
+ansible-galaxy role init <role_name>
+
+# Get information about a role
+ansible-galaxy role info <role_name>
+
+# Install or remove collection(s)
+ansible-galaxy collection <install|remove> <collection_name1 collection_name2 ...>
+
+# Display help about roles or collections
+ansible-galaxy <role|collection> <-h|--help>
+
+% ansible-inventory
+
+# Display the default inventory
+ansible-inventory --list
+
+# Display a custom inventory
+ansible-inventory --list --inventory <path_to_file_or_script_or_directory>
+
+# Display the default inventory in YAML
+ansible-inventory --list --yaml
+
+# Dump the default inventory to a file
+ansible-inventory --list --output <path_to_file>
+
+% ansible-playbook
+
+# Run tasks in playbook
+ansible-playbook <playbook>
+
+# Run tasks in playbook with custom host [i]nventory
+ansible-playbook <playbook> -i <inventory_file>
+
+# Run tasks in playbook with [e]xtra variables defined via the command-line
+ansible-playbook <playbook> -e "<variable1>=<value1> <variable2>=<value2>"
+
+# Run tasks in playbook with [e]xtra variables defined in a JSON file
+ansible-playbook <playbook> -e "@<variables.json>"
+
+# Run tasks in playbook for the given tags
+ansible-playbook <playbook> --tags <tag1,tag2>
+
+# Run tasks in a playbook starting at a specific task
+ansible-playbook <playbook> --start-at <task_name>
+
+# Run tasks in a playbook without making any changes (dry-run)
+ansible-playbook <playbook> --check --diff
+
+% ansible-pull
+
+# Pull a playbook from a VCS and execute a default local.yml playbook
+ansible-pull -U <repository_url>
+
+# Pull a playbook from a VCS and execute a specific playbook
+ansible-pull -U <repository_url> <playbook>
+
+# Pull a playbook from a VCS at a specific branch and execute a specific playbook
+ansible-pull -U <repository_url> -C <branch> <playbook>
+
+# Pull a playbook from a VCS, specify hosts file and execute a specific playbook
+ansible-pull -U <repository_url> -i <hosts_file> <playbook>
+
+% ansible-vault
+
+# Create a new encrypted vault file with a prompt for a password
+ansible-vault create <vault_file>
+
+# Create a new encrypted vault file using a vault key file to encrypt it
+ansible-vault create --vault-password-file <password_file> <vault_file>
+
+# Encrypt an existing file using an optional password file
+ansible-vault encrypt --vault-password-file <password_file> <vault_file>
+
+# Encrypt a string using Ansible's encrypted string format, displaying interactive prompts
+ansible-vault encrypt_string
+
+# View an encrypted file, using a password file to decrypt
+ansible-vault view --vault-password-file <password_file> <vault_file>
+
+# Re-key already encrypted vault file with a new password file
+ansible-vault rekey --vault-password-file <old_password_file> --new-vault-password-file <new_password_file> <vault_file>

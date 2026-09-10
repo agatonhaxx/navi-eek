@@ -1,7 +1,8 @@
-; This has been extracted from
-; https://github.com/tldr-pages/tldr/blob/master/pages/common/brew.md
+; Homebrew package manager — install, search, casks, services, bundles.
+; Merged from tldr pages (brew, brew-install, brew-list, brew-outdated, brew-search, brew-uninstall,
+; brew-update, brew-upgrade, brew-autoremove, brew-bundle) + pkg_mgr__brew + navi__cheats__brew.
 
-% brew, common
+% brew
 
 # Install the latest stable version of a formula or cask (use `--devel` for development versions)
 brew install <formula>
@@ -24,5 +25,172 @@ brew search <text>
 # Display information about a formula or a cask (version, installation path, dependencies, etc.)
 brew info <formula>
 
+# Display information about a cask
+brew info --cask <cask>
+
 # Check the local Homebrew installation for potential problems
 brew doctor
+
+# Reinstall a package
+brew reinstall <package>
+
+# Reinstall a cask
+brew reinstall --cask <cask>
+
+# Edit the formula file of a package
+brew edit <package>
+
+# Edit the cask file of a cask
+brew edit --cask <cask>
+
+# Remove stale lock files and outdated downloads
+brew cleanup
+
+# Fix permissions on /usr/local (macOS)
+sudo chown -R $(whoami):admin /usr/local
+
+% brew install
+
+# Install a cask
+brew install --cask <cask>
+
+# Build and install a formula from source (dependencies will still be installed from bottles)
+brew install --build-from-source <formula>
+
+# Download the manifest, print what would be installed but don't actually install anything
+brew install --dry-run <formula|cask>
+
+% brew list
+
+# List files belonging to an installed formula
+brew list <formula>
+
+# List artifacts of a cask
+brew list <cask>
+
+# List only formulae
+brew list --formula
+
+# List only casks
+brew list --cask
+
+# List only pinned formulae
+brew list --pinned
+
+% brew search
+
+# Search for casks and formulae using a regular expression
+brew search /<regular_expression>/
+
+# Enable searching through descriptions
+brew search --desc <keyword>
+
+# Only search for formulae
+brew search --formula <keyword>
+
+# Only search for casks
+brew search --cask <keyword>
+
+% brew outdated
+
+# List only outdated formulae
+brew outdated --formula
+
+# List only outdated casks
+brew outdated --cask
+
+% brew uninstall
+
+# Uninstall a cask
+brew uninstall --cask <cask>
+
+# Uninstall a cask and remove all associated files
+brew uninstall --zap <cask>
+
+% brew upgrade
+
+# Print what would be upgraded, but don't actually upgrade anything
+brew upgrade --dry-run
+
+% brew autoremove
+
+# Remove all unused formulae
+brew autoremove
+
+# Print what would be removed, but don't actually remove anything
+brew autoremove --dry-run
+
+% brew services
+
+# List all services installed by brew for the current user
+brew services list
+
+# List all services installed by brew (as root)
+sudo brew services list
+
+# Run a service formula without registering it to launch at login
+brew services run <brewservice>
+
+# Run a service formula without registering it to launch at login (as root)
+sudo brew services run <brewservice>
+
+# Start a service formula immediately and register it to launch at login
+brew services start <brewservice>
+
+# Start a service formula immediately and register it to launch at login (as root)
+sudo brew services start <brewservice>
+
+# Stop a service formula immediately and unregister it from launching at login
+brew services stop <brewservice>
+
+# Stop a service formula immediately and unregister it from launching at login (as root)
+sudo brew services stop <brewservice>
+
+# Stop (if necessary) and start a service formula immediately and register it to launch at login
+brew services restart <brewservice>
+
+# Stop (if necessary) and start a service formula immediately and register it to launch at login (as root)
+sudo brew services restart <brewservice>
+
+# Remove all unused services
+brew services cleanup
+
+# Remove all unused services (as root)
+sudo brew services cleanup
+
+% brew bundle
+
+# Install packages from a Brewfile at the current path
+brew bundle
+
+# Install packages from a specific Brewfile at a specific path
+brew bundle --file <path_to_file>
+
+# Create a Brewfile from all installed packages
+brew bundle dump
+
+# Uninstall all formulae not listed in the Brewfile
+brew bundle cleanup --force
+
+# Check if there is anything to install or upgrade in the Brewfile
+brew bundle check
+
+# List all entries in the Brewfile
+brew bundle list --all
+
+% brew link
+
+# Symlink an installed formula into the Homebrew prefix
+brew link <installed>
+
+# Delete files that already exist in the prefix while linking
+brew link --overwrite <installed>
+
+# Allow keg-only formulae to be linked
+brew link --force <installed>
+
+$ package: brew search
+$ casks: brew search --cask
+$ installed: brew list
+$ caskinstalled: brew list --cask
+$ brewservice: brew services list | awk '{if (NR>1){printf "%s\n", $1}}'

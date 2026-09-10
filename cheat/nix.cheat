@@ -1,4 +1,5 @@
 ; Nix and NixOS — ephemeral dev shells, flakes, store management, system rebuilds.
+; Merged from nix.cheat + tldr pages: nix-classic, nix-shell, nix-build, nix-env, nix-store, nix-collect-garbage.
 
 % nix
 
@@ -35,6 +36,36 @@ nix store gc
 # Show the derivation of a package
 nix show-derivation nixpkgs#<package>
 
+% nix
+
+# Search for a package in nixpkgs via its name or description
+nix search nixpkgs <search_term>
+
+% nix
+
+# Start a shell with the specified packages from nixpkgs available
+nix shell <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
+
+% nix
+
+# Install some packages from nixpkgs permanently
+nix profile install <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
+
+% nix
+
+# Start an interactive environment for evaluating Nix expressions
+nix repl
+
+% nix
+
+# Display help for a specific subcommand
+nix help <subcommand>
+
+% nix
+
+# Enable the `nix` command and flake support
+mkdir -p ~/.config/nix; echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+
 % nix-shell
 
 # Enter a shell with specific packages available
@@ -49,6 +80,21 @@ nix-shell -p <package1> <package2> --run "<command>"
 
 # Enter the legacy shell.nix shell
 nix-shell
+
+% nix-shell
+
+# Start with expression in default.nix in the current directory
+nix-shell <default.nix>
+
+% nix-shell
+
+# Load packages from a specific nixpkgs revision
+nix-shell --packages <package1 package2 ...> -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/<nixpkgs_revision>.tar.gz
+
+% nix-shell
+
+# Use as an interpreter for `#!`-scripts
+nix-shell -i <interpreter> --packages <package1 package2 ...>
 
 % devenv
 
@@ -95,6 +141,61 @@ sudo nix-env --switch-generation <N>
 # List generations of the system profile
 sudo nix-env --list-generations -p /nix/var/nix/profiles/system
 
+% nix-env
+
+# List all installed packages
+nix-env -q
+
+% nix-env
+
+# Query installed packages
+nix-env -q <search_term>
+
+% nix-env
+
+# Query available packages
+nix-env -qa <search_term>
+
+% nix-env
+
+# Search for a package in nixpkgs via its name or attribute path
+nix-env -qaP <search_term_regexp>
+
+% nix-env
+
+# Install a package permanently
+nix-env -iA nixpkgs.<pkg_name>
+
+% nix-env
+
+# Install a package from a URL
+nix-env -i <pkg_name> --file <url>
+
+% nix-env
+
+# Uninstall a package
+nix-env -e <pkg_name>
+
+% nix-env
+
+# Upgrade one package
+nix-env -u <pkg_name>
+
+% nix-env
+
+# Upgrade all packages
+nix-env -u
+
+% nix-build
+
+# Build a Nix expression
+nix-build '<nixpkgs>' --attr <firefox>
+
+% nix-build
+
+# Build a sandboxed Nix expression (on non-NixOS)
+nix-build '<nixpkgs>' --attr <firefox> --option sandbox true
+
 % nix-store
 
 # Show the runtime dependencies of a command
@@ -110,35 +211,42 @@ nix-store --query --tree $(which <command>)
 # Show what depends on a store path
 nix-store --query --referrers /nix/store/<path>
 
+% nix-store
+
+# Calculate the total size of a store path with all dependencies
+du -cLsh $(nix-store --query --references <nix_store_path>)
+
+% nix-store
+
+# Hard-link identical files together to reduce space usage
+nix-store --optimise
+
+% nix-store
+
+# Delete a specific store path (must be unused)
+nix-store --delete <nix_store_path>
+
 % nix-collect-garbage
 
 # Delete old generations and unreachable store paths
 nix-collect-garbage -d
 
+% nix-collect-garbage
+
+# Simulate the deletion of old store paths
+sudo nix-collect-garbage --delete-old --dry-run
+
+% nix-collect-garbage
+
+# Delete all store paths older than 30 days
+sudo nix-collect-garbage --delete-older-than 30d
+
+% nix-channel
+
+# Update the channels (repositories)
+nix-channel --update
+
 % nix-locate
 
 # Find which package provides a file
 nix-locate <path>
-
-% nix, common
-
-# Enable the `nix` command and flake support
-mkdir -p ~/.config/nix; echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-
-# Search for a package in nixpkgs via its name or description
-nix search nixpkgs <search_term>
-
-# Start a shell with the specified packages from nixpkgs available
-nix shell <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
-
-# Install some packages from nixpkgs permanently
-nix profile install <nixpkgs#pkg1 nixpkgs#pkg2 nixpkgs#pkg3 ...>
-
-# Remove unused paths from Nix store to free up space
-nix store gc
-
-# Start an interactive environment for evaluating Nix expressions
-nix repl
-
-# Display help for a specific subcommand
-nix help <subcommand>

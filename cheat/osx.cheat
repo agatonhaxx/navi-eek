@@ -1,0 +1,84 @@
+; macOS — Finder defaults, power management, notifications, UI tweaks.
+; Merged from os__osx + navi__cheats__osx community cheats.
+
+% osx, mac os
+
+# Copy <file_or_dir> to <target_path>, and remove all target files and directories `@` attribute
+cp -RX <file_or_dir> <target_path>
+
+# Remove <file_or_dir>'s `@` attribute
+xattr -rc <file_or_dir>
+
+# Lock system
+pmset displaysleepnow
+
+# Eject volume
+diskutil eject '<eject_vol>'
+
+# Show disk info
+diskutil list
+
+# Show partition info
+diskutil info '<disk_dev>'
+
+# Show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool true; \
+   killall Finder
+
+# Hide hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool false; \
+   killall Finder
+
+# Show items in desktop
+defaults write com.apple.finder CreateDesktop -bool true; \
+   killall Finder
+
+# Hide items in desktop
+defaults write com.apple.finder CreateDesktop -bool false; \
+   killall Finder
+
+# Set wallpaper
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "<image_path>"'
+
+# Create a new empty file in the front Finder window
+suffix="$(date +'%Hh%Mmin%S')"; osascript -e 'set title to "new_'$suffix'.txt"' -e 'tell application "Finder" to make new file at (the target of the front window) as alias with properties {name: title}'
+
+$ file_or_dir: ls
+$ image_path: find $HOME -maxdepth 3 -name "*.jpg" -o -name "*.jpeg" -o -name "*.png"
+$ disk_dev: find /dev -maxdepth 1 -name "disk*s*"
+$ eject_vol: find /Volumes ! -path /Volumes -maxdepth 1 -type d  -name "*"
+
+% osx, notification
+
+# Display a notification with message, title and subtitle
+osascript -e 'display notification "<message>" with title "<title>" subtitle "<subtitle>"'
+
+# Display a notification with message and title
+osascript -e 'display notification "<message>" with title "<title>"'
+
+% osx, power
+
+# Prevent sleep for <minutes> minutes
+caffeinate -t $((60*<minutes>))
+
+# Prevent sleep for a long time
+caffeinate -t 18000
+
+# Turn Macbook display on
+brightness 0.5
+
+# Turn Macbook display off
+brightness 0
+
+% osx, ui
+
+# Set dark mode on
+osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
+
+# Set dark mode off (light)
+osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
+
+# Set wallpaper for multiple workspaces
+osascript -e 'tell application "System Events" to tell every desktop to set picture to "<wallpaper>"'
+
+$ wallpaper: find ~/Pictures/Wallpapers -type f --- --preview 'viu --height 20 {}' --preview-window 'bottom:20'

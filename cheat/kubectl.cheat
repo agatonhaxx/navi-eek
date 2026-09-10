@@ -1,0 +1,160 @@
+; Kubernetes cluster control.
+; More information: https://kubernetes.io/docs/reference/kubectl/
+; Merged from kubernetes.cheat + container__kubernetes community cheats.
+
+% kubectl
+
+# Get cluster info
+kubectl cluster-info
+
+% kubectl
+
+# List pods
+kubectl get pods
+
+% kubectl
+
+# List all resources
+kubectl get all
+
+% kubectl
+
+# Get nodes (add option '-o wide' for details)
+kubectl get nodes
+
+% kubectl
+
+# Get namespaces
+kubectl get namespaces
+
+% kubectl
+
+# Get pods from a namespace (add option '-o wide' for details)
+kubectl get pods -n <namespace>
+
+% kubectl
+
+# Get pods from all namespaces (add option '-o wide' for details)
+kubectl get pods --all-namespaces
+
+% kubectl
+
+# Get services from a namespace
+kubectl get services -n <namespace>
+
+% kubectl
+
+# Get deployments in a namespace
+kubectl get deployments -n <namespace>
+
+% kubectl
+
+# Describe a resource
+kubectl describe <resource> <name>
+
+% kubectl
+
+# Get details from a resource in a namespace
+kubectl describe <resource>/<name> -n <namespace>
+
+% kubectl
+
+# View logs
+kubectl logs <pod>
+
+% kubectl
+
+# Stream logs
+kubectl logs -f <pod>
+
+% kubectl
+
+# Print logs from a namespace
+kubectl logs -f pods/<name> -n <namespace>
+
+% kubectl
+
+# Execute command in pod
+kubectl exec -it <pod> -- <command>
+
+% kubectl
+
+# Apply a manifest
+kubectl apply -f <manifest_file>
+
+% kubectl
+
+# Delete a resource
+kubectl delete <resource> <name>
+
+% kubectl
+
+# Port-forward to a pod
+kubectl port-forward <pod> <local_port>:<remote_port>
+
+% kubectl
+
+# Switch context
+kubectl config use-context <context>
+
+% kubectl
+
+# List contexts
+kubectl config get-contexts
+
+% kubectl
+
+# Print current context of kubeconfig
+kubectl config current-context
+
+% kubectl
+
+# Print resource documentation
+kubectl explain <resource>
+
+% kubectl
+
+# Edit a deployment in a namespace
+kubectl edit deployment/<name> -n <namespace>
+
+% kubectl
+
+# Drain node in preparation for maintenance
+kubectl drain <name>
+
+% kubectl
+
+# Mark node as schedulable
+kubectl uncordon <name>
+
+% kubectl
+
+# Mark node as unschedulable
+kubectl cordon <name>
+
+% kubectl
+
+# Display resource (cpu/memory/storage) usage
+kubectl top <type>
+
+% kubens
+
+# List the namespaces in the current context
+kubens
+
+% kubens
+
+# Change the active namespace of current context
+kubens <namespaces>
+
+% kubens
+
+# Switch to the previous namespace in this context
+kubens -
+
+% kubens
+
+# Show the current namespace
+kubens -c
+
+$ namespaces: kubens --- --headers 1 --column 3

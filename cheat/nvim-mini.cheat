@@ -1,0 +1,140 @@
+; mini.nvim keybindings — the "mini way": textobjects (mini.ai), surrounding (mini.surround), alignment (mini.align).
+; Docs: https://github.com/echasnovski/mini.nvim (readmes/mini-*.md, doc/mini-*.txt)
+; Setup: require('mini.ai').setup() / require('mini.surround').setup() / require('mini.align').setup()
+
+% nvim-mini, nvim
+
+# Textobjects: <a|i><key> — ci) change inside parens, vaa select argument, daf delete function call
+a/i + <key>
+
+# Surround: sa add, sd delete, sr replace, sf/sF find, sh highlight
+sa sd sr sf sF sh
+
+# Align: ga + motion aligns a region, gA same with live preview
+ga / gA
+
+# All mini edits are dot-repeatable and honor counts (e.g. 2sd" or 3.)
+.
+
+% mini.ai, nvim
+
+# Next variant — e.g. dan deletes the next argument, vin selects it
+an / in
+
+# Last (previous) variant
+al / il
+
+# Jump to left edge of the current `a` object
+g[
+
+# Jump to right edge of the current `a` object
+g]
+
+# Argument — daa delete argument, cia change inside argument
+aa / ia
+
+# Function call — daf delete whole call with args, cif change name
+af / if
+
+# Tag — vit inside <tag>, dat whole tag
+at / it
+
+# Balanced brackets — open ( [ { < pad with whitespace, close ) ] } > don't
+( ) [ ] { } < >
+
+# Alias for ), ], or }
+b
+
+# Balanced quotes, plus alias q for any of " ' `
+" ' ` / q
+
+# Interactive: prompt for left and right parts
+a? / i?
+
+# Any other key falls back to Neovim builtin textobjects: aw aW ap ab a* a<Space>
+a<key>
+
+# Search window: n_lines = 50 lines by default
+n_lines = 50
+
+% mini.surround, nvim
+
+# Add surrounding (Normal or Visual) — sa + motion + char: saiw( wraps word in parens
+sa
+
+# Delete surrounding — sd( ; append n/l to search next/prev: sdn, sdl
+sd
+
+# Replace surrounding — sr(" swaps parens for quotes
+sr
+
+# Find surrounding (to the right) — moves cursor; sfn searches next
+sf
+
+# Find surrounding (to the left) — moves cursor; sfl searches prev
+sF
+
+# Highlight surrounding (500 ms by default); shn / shl search next / prev
+sh
+
+# Suffix n: search with "next" method — sdn, srn, sfn, shn
+n
+
+# Suffix l: search with "prev" method — sdl, srl, sfl, shl
+l
+
+# Identifiers: f = function call, t = tag, ( ) [ ] { } < > = balanced brackets, ? = prompt
+f t ( ) [ ] { } < > ?
+
+# Any other single character = surrounding with identical left/right parts
+<any char>
+
+# Dot-repeatable and count-aware — 2sd" deletes twice, . repeats the last edit
+[count] / .
+
+# Search window: n_lines = 20 lines by default
+n_lines = 20
+
+% mini.align, nvim
+
+# Start alignment — then give a motion/textobject: gaip aligns inner paragraph
+ga
+
+# Start alignment with live preview (updated on every modifier)
+gA
+
+# Accept the current result
+<CR>
+
+# Discard and return to initial region
+<Esc>
+
+# Modifier: enter split pattern (e.g. s= splits on =)
+s
+
+# Modifier: choose justification side (left / center / right / none)
+j
+
+# Modifier: enter merge delimiter
+m
+
+# Modifier: filter parts via Lua expression (e.g. fn==1 keeps only first part)
+f
+
+# Modifier: ignore some split matches
+i
+
+# Modifier: pair neighboring parts so they align together
+p
+
+# Modifier: trim parts of whitespace
+t
+
+# Modifier: delete last pre-step
+<BS>
+
+# Quick setup for common splits: = , | <Space>
+= , | <Space>
+
+# Example: gaip= aligns paragraph on =; gAip= same with preview
+gaip=

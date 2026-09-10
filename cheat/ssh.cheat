@@ -1,5 +1,6 @@
 ; Secure shell client.
 ; More information: https://man.openbsd.org/ssh
+; Merged from ssh.cheat + security__ssh.
 
 % ssh
 
@@ -45,3 +46,8 @@ scp -r <dir> <user>@<host>:<path>
 
 # Generate an SSH key pair
 ssh-keygen -t ed25519 -C "<comment>"
+
+% ssh
+
+# Start ssh agent and add the default key
+eval "$(ssh-agent -s)"; ssh-add

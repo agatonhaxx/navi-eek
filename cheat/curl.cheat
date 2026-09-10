@@ -1,5 +1,6 @@
 ; Transfer data from or to a server.
 ; More information: https://curl.se/docs/manpage.html
+; Merged from curl.cheat + network__curl community cheats.
 
 % curl
 
@@ -12,6 +13,11 @@ curl <url>
 curl -H "<header>" <url>
 
 $ header: printf '%s\n' 'Content-Type: application/json'
+
+% curl
+
+# Request with a custom header
+curl -X <method> <url> -H "<headername>: <headervalue>"
 
 % curl
 
@@ -28,6 +34,16 @@ curl -X POST -d "<field1>" -d "<field2>" <url>
 $ field1: printf '%s\n' 'key1=value1'
 
 $ field2: printf '%s\n' 'key2=value2'
+
+% curl
+
+# Request with a form body
+curl <url> -d <bodykey>=<bodyvalue>
+
+% curl
+
+# Request with a body from a file
+curl -X <method> <url> --data-binary "@<file>"
 
 % curl
 
@@ -49,7 +65,15 @@ curl -i <url>
 # Send via specific HTTP method
 curl -X <method> <url>
 
-$ method: printf '%s\n' 'GET' 'POST' 'PUT' 'DELETE' 'PATCH'
+% curl
+
+# Exit with a non-zero status code on failure
+curl --fail <url>
+
+% curl
+
+# Send an authenticated request
+curl -u <username>:<password> -X <method> <url>
 
 % curl
 
@@ -60,3 +84,6 @@ curl -s <url>
 
 # Verbose output for debugging
 curl -v <url>
+
+$ method: printf '%s\n' 'GET' 'POST' 'PUT' 'DELETE' 'PATCH'
+$ file: ls

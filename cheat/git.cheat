@@ -1,5 +1,6 @@
 ; Distributed version control system.
 ; More information: https://git-scm.com/docs/git
+; Merged from git.cheat + code__git community cheats.
 
 % git
 
@@ -13,6 +14,16 @@ git clone <url>
 
 % git
 
+# Clone a specific branch into a specific directory
+git clone -b <branch_name> <repository> <clone_directory>
+
+% git
+
+# Shallow clone with depth 1 with all branches and submodules
+git clone --depth=1 --no-single-branch --recurse-submodules <repository> <clone_directory>
+
+% git
+
 # Stage a file
 git add <file>
 
@@ -20,6 +31,11 @@ git add <file>
 
 # Stage hunks interactively
 git add -p
+
+% git
+
+# Stage all files in project
+git add -A
 
 % git
 
@@ -33,6 +49,16 @@ git commit --amend --no-edit
 
 % git
 
+# Create backdated commit for staged files
+git commit --date="<number_of_days_ago> days ago" -m "<commit_description>"
+
+% git
+
+# Commit skipping git hooks
+git commit --no-verify
+
+% git
+
 # Show working tree status
 git status
 
@@ -43,6 +69,11 @@ git log --oneline --graph --all
 
 % git
 
+# Display log of commits for a repo
+git log
+
+% git
+
 # Show unstaged changes
 git diff
 
@@ -50,6 +81,12 @@ git diff
 
 # Show staged changes
 git diff --staged
+
+% git
+
+# Show unstaged changes for a selected file
+cd <toplevel_directory>; \
+    git diff <unstaged_files>
 
 % git
 
@@ -68,13 +105,51 @@ git switch <name>
 
 % git
 
+# Checkout a branch
+git checkout <branch>
+
+% git
+
+# Create a new branch from current HEAD
+git checkout -b <new_branch_name>
+
+% git
+
 # Merge a branch into the current one
 git merge <branch>
 
 % git
 
+# Abort the current conflict resolution process, and try to reconstruct the pre-merge state
+git merge --abort
+
+% git
+
 # Rebase current branch onto another
 git rebase <branch>
+
+% git
+
+# Sign all commits in a branch based on master
+git rebase master -S -f
+
+% git
+
+# Rebase upstream master into local/origin master (use if people don't clone your repository)
+git fetch <remote_name>
+git checkout master
+git rebase <remote_name>/master
+git fetch --unshallow origin
+git push -f origin master
+
+% git
+
+# Merge upstream master into local/origin master (use if people clone your repository)
+git fetch <remote_name>
+git checkout master
+git merge <remote_name>/master
+git fetch --unshallow origin
+git push -f origin master
 
 % git
 
@@ -98,13 +173,48 @@ git pull
 
 % git
 
+# Pull changes with fast-forward only
+git pull --ff-only
+
+% git
+
 # Push to remote
 git push
 
 % git
 
+# Push committed changes to a remote repository and set upstream
+git push -u <remote_name> <branch_name>
+
+% git
+
+# Push changes to a remote repository overwriting another branch
+git push <remote_name> <branch>:<branch_to_overwrite>
+
+% git
+
+# Overwrite remote branch with local branch changes
+git push <remote_name> <branch_name> -f
+
+% git
+
 # Add a remote
 git remote add <name> <url>
+
+% git
+
+# View all available remotes for a git repository
+git remote --verbose
+
+% git
+
+# Rename a remote
+git remote rename <old_remote_name> <new_remote_name>
+
+% git
+
+# Remove a remote
+git remote remove <remote_name>
 
 % git
 
@@ -130,6 +240,21 @@ $ force: printf '%s\n' '-f' '--force'
 
 % git
 
+# Remove commits from local repository (destroy changes)
+git reset --hard HEAD~<number_of_commits>
+
+% git
+
+# Remove commits from local repository (keep changes)
+git reset --soft HEAD~<number_of_commits>
+
+% git
+
+# Clear everything
+git clean -dxf
+
+% git
+
 # Show what changed in a file per commit
 git blame <file>
 
@@ -137,6 +262,42 @@ git blame <file>
 
 # Find the commit that introduced a bug
 git bisect start; git bisect bad; git bisect good <commit>
+
+% git
+
+# Checkout a branch from a fork
+git fetch origin pull/<pr_number>/head:pr/<pr_number> \
+   && git checkout pr/<pr_number>
+
+% git
+
+# See all open pull requests of a user on Github
+navi fn url::open 'https://github.com/pulls?&q=author:<user>+is:open+is:pr'
+
+% git
+
+# Add a new submodule
+git submodule add <repository> <path>
+
+% git
+
+# Update submodules
+git submodule update --init
+
+% git
+
+# Update submodules without init
+git submodule update
+
+% git
+
+# Pull all submodules
+git submodule foreach git pull origin master
+
+% git
+
+# Update all submodules recursively
+git submodule update --init --recursive
 
 % git, worktree
 
@@ -172,3 +333,8 @@ git worktree move <path_to_worktree> <new_path>
 ; - You can't check out the same branch in two worktrees.
 ; - Worktrees share the same `.git` object store.
 ; - Submodules are independent per worktree.
+
+$ branch: git branch | awk '{print $NF}'
+$ toplevel_directory: git rev-parse --show-toplevel
+$ unstaged_files: git status --untracked-files=no -s --porcelain | awk '{print $NF}' --- --multi true
+$ changed_files: git status --untracked-files=all -s --porcelain | awk '{print $NF}' --- --multi true
