@@ -92,6 +92,10 @@ rg <pattern> --replace <replacement>
 
 % rg
 
+# Replace matches with string NOT DRY-RUN!
+rg <pattern> | xargs -d "\n" sed -i "s/<pattern>/<replacement>/g"
+% rg
+
 # Search hidden files and ignore .gitignore
 rg <hidden> --no-ignore <pattern>
 
