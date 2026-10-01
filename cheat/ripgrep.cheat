@@ -98,7 +98,7 @@ rg <pattern> | xargs -d "\n" sed -i "s/<pattern>/<replacement>/g"
 % rg
 
 # Replace matches with string NOT DRY-RUN! MacOs edition
-rg --files-with-matches <pattern> | xargs -0 "\n" sed -i "s/<pattern>/<replacement>/g"
+rg -l -0 '<pattern>' | xargs -0 perl -pi -e 's/<patternt>/<replacement>/g'
 
 % rg
 
